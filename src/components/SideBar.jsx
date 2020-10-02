@@ -37,7 +37,12 @@ export default function SideBar(props) {
             {props.value.map((val) => {
               return (
                 <li className="nav-item" key={val.projectId}>
-                  <a className="nav-link" href id={val.projectId}>
+                  <a
+                    className="nav-link"
+                    href
+                    id={val.projectId}
+                    onClick={() => props.displaySelectedProject(val.projectId)}
+                  >
                     <span data-feather="file-text"></span>
                     {val.projectName}
                   </a>

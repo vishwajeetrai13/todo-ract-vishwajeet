@@ -51,3 +51,83 @@ export default class ProjectForm extends Component {
     );
   }
 }
+
+export class TodoForm extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      todoName: "",
+      todoDate: "",
+      todoPriority: "",
+    };
+  }
+  updateTodoName = (e) => {
+    this.setState({ todoName: e.target.value });
+  };
+  updateTodoDate = (e) => {
+    this.setState({ todoDate: e.target.value });
+  };
+  updateTodoPriority = (e) => {
+    this.setState({ todoPriority: e.target.value });
+  };
+  render() {
+    const { todoName, todoDate, todoPriority } = this.state;
+    return (
+      <div id="id02" class="modal">
+        <form class="modal-content animate" id="form-add-todo">
+          <div class="container">
+            <label for="uname">
+              <b>Add New Task</b>
+            </label>
+            <input
+              type="text"
+              placeholder="todo"
+              name="uname"
+              id="todo-title"
+              value={this.todoName}
+              onChange={this.updateTodoName}
+              required
+            />
+            <div class="d-flex justify-content-between">
+              <input
+                class="form-control mr-2"
+                type="date"
+                placeholder="2011-08-19"
+                id="todo-due-date"
+                value={this.todoDate}
+                onChange={this.updateTodoDate}
+              />
+              <select
+                class="form-control ml-2"
+                id="todo-priority-selector"
+                value={this.todoPriority}
+                onChange={this.updateTodoPriority}
+              >
+                <option value="standard">standard</option>
+                <option value="high">high</option>
+                <option value="low">low</option>
+              </select>
+            </div>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="todo-submit-btn"
+              onClick={() =>
+                this.props.addNewTodo(todoName, todoDate, todoPriority)
+              }
+            >
+              Add Todo
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick={this.props.closeTodoForm}
+            >
+              close
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}

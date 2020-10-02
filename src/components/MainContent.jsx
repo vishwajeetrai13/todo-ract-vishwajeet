@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SideBar from "./SideBar";
-import ProjectForm from "./ProjectForm";
+import ProjectForm, { TodoForm } from "./ProjectForm";
+import ProjectDisplay from "./ProjectDisplay";
 import { v4 as uuidv4 } from "uuid";
 
 export default class MainContent extends Component {
@@ -18,24 +19,20 @@ export default class MainContent extends Component {
               date: "02/12/2019",
               isComplete: false,
             },
-            {
-              id: 2,
-              title: "sample task 2",
-              date: "02/12/2019",
-              isComplete: false,
-            },
           ],
         },
       ],
       displayProjectForm: false,
-      currDisplayProject: [],
+      displayTodoForm: false,
+      currDisplayProject: null,
     };
   }
 
-  displaySelectedProject = (projectId) => {
-    currProject = this.state.projects.find(
-      (val) => val.projectId === projectId
-    );
+  closeTodoForm = () => {
+    this.setState({ displayTodoForm: false });
+  };
+  displayTodoForm = () => {
+    this.setState({ displayTodoForm: true });
   };
 
   closeProjectForm = () => {
@@ -46,7 +43,6 @@ export default class MainContent extends Component {
   };
 
   addNewProject = (projectName) => {
-    console.log(projectName);
     const projectData = {
       projectId: uuidv4(),
       projectName: projectName,
@@ -58,6 +54,39 @@ export default class MainContent extends Component {
     });
   };
 
+  addNewTodo = (title, date, priority) => {
+    let projectId = this.state.currDisplayProject
+      ? this.state.currDisplayProject.projectId
+      : this.state.projects[0].projectId;
+
+    let currProject = this.state.projects.map((cur) => {
+      if (cur.projectId === projectId) {
+        let newData = {
+          id: uuidv4(),
+          title: title,
+          date: date,
+          priority: priority,
+          isComplete: false,
+        };
+        console.log("todo ", cur);
+        cur.data.push(newData);
+      }
+      return cur;
+    });
+    console.log("curr ", currProject);
+    this.setState({
+      projects: currProject,
+      displayTodoForm: false,
+    });
+  };
+
+  displaySelectedProject = (projectId) => {
+    let currProject = this.state.projects.find(
+      (val) => val.projectId === projectId
+    );
+    this.setState({ currDisplayProject: currProject });
+  };
+
   render() {
     return (
       <div className="row">
@@ -67,10 +96,31 @@ export default class MainContent extends Component {
             addNewProject={this.addNewProject}
           />
         ) : null}
+
+        {this.state.displayTodoForm ? (
+          <TodoForm
+            closeProjectForm={this.closeProjectForm}
+            addNewProject={this.addNewProject}
+            closeTodoForm={this.closeTodoForm}
+            addNewTodo={this.addNewTodo}
+          />
+        ) : null}
+
         <SideBar
           value={this.state.projects}
           displayProjectForm={this.displayProjectForm}
+          displaySelectedProject={this.displaySelectedProject}
         />
+
+        <ProjectDisplay
+          value={
+            this.state.currDisplayProject
+              ? this.state.currDisplayProject
+              : this.state.projects[0]
+          }
+          displayTodoForm={this.displayTodoForm}
+          closeTodoForm={this.closeTodoForm}
+        ></ProjectDisplay>
       </div>
     );
   }

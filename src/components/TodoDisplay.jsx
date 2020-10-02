@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function TodoDisplay(projectId, data) {
+export default function TodoDisplay({ projectId, data }) {
+  console.log(data);
   const { id, title, date, isComplete } = data;
   return (
     <div className="todo-item border-primary list-group-item d-flex justify-content-between align-items-center flex-column flex-md-row">

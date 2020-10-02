@@ -2,7 +2,8 @@ import React from "react";
 import TodoDisplay from "./TodoDisplay";
 
 export default function ProjectDisplay(props) {
-  const { projectId, projectName, data } = props;
+  const { projectId, projectName, data } = props.value;
+  console.log(props.value.data);
   return (
     <React.Fragment>
       <main
@@ -17,7 +18,7 @@ export default function ProjectDisplay(props) {
               <div className="btn-group mr-2">
                 <button
                   className="btn btn-sm btn-outline-secondary"
-                  onclick="document.getElementById('id02').style.display='block'"
+                  onClick={props.displayTodoForm}
                 >
                   Add Task
                 </button>
