@@ -33,6 +33,7 @@ export default function SideBar(props) {
               </svg>
             </a>
           </h6>
+          {props.children}
           <ul className="nav flex-column mb-2" id="project-list">
             {props.value.map((val) => {
               return (

@@ -17,7 +17,7 @@ export default function ProjectDisplay(props) {
             <div className="btn-toolbar mb-2 mb-md-0">
               <div className="btn-group mr-2">
                 <button
-                  className="btn btn-sm btn-outline-secondary"
+                  className="btn btn-sm btn-outline-success"
                   onClick={props.displayTodoForm}
                 >
                   Add Task
@@ -30,10 +30,11 @@ export default function ProjectDisplay(props) {
                   delete Project
                 </button>
                 <button
-                  className="btn btn-sm btn-outline-success ml-2 show-completed-task"
+                  className="btn btn-sm btn-outline-secondary ml-2 show-completed-task"
                   value="true"
+                  onClick={props.toggleCompleteTask}
                 >
-                  Completed tasks
+                  {props.completeTaskDisplay ? "Show tasks" : "Tasks History"}
                 </button>
               </div>
             </div>
@@ -41,15 +42,33 @@ export default function ProjectDisplay(props) {
           <h4>Todo Lists</h4>
           <div className="table-responsive">
             <div className="list-group">
-              {data.map((val) => (
-                <TodoDisplay
-                  key={val.id}
-                  projectId={projectId}
-                  data={val}
-                  completeTodo={props.completeTodo}
-                  deleteTodo={props.deleteTodo}
-                />
-              ))}
+              {data.map((val) => {
+                if (!val.isComplete && !props.completeTaskDisplay) {
+                  return (
+                    <TodoDisplay
+                      key={val.id}
+                      projectId={projectId}
+                      data={val}
+                      completeTodo={props.completeTodo}
+                      deleteTodo={props.deleteTodo}
+                      displayEditTodoForm={props.displayEditTodoForm}
+                    />
+                  );
+                } else if (val.isComplete && props.completeTaskDisplay) {
+                  return (
+                    <TodoDisplay
+                      key={val.id}
+                      projectId={projectId}
+                      data={val}
+                      completeTodo={props.completeTodo}
+                      deleteTodo={props.deleteTodo}
+                      displayEditTodoForm={props.displayEditTodoForm}
+                    />
+                  );
+                } else {
+                  return null;
+                }
+              })}
             </div>
           </div>
         </div>

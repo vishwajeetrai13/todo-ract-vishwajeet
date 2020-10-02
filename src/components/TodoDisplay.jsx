@@ -20,7 +20,18 @@ export default function TodoDisplay(props) {
           >
             Done task
           </button>
-          <button className="btn btn-sm btn-outline-secondary todo-edit-btn">
+          <button
+            className="btn btn-sm btn-outline-secondary todo-edit-btn"
+            onClick={() =>
+              props.displayEditTodoForm(
+                props.projectId,
+                id,
+                title,
+                date,
+                priority
+              )
+            }
+          >
             Edit task
           </button>
           <button
