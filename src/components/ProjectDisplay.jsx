@@ -25,6 +25,7 @@ export default function ProjectDisplay(props) {
                 <button
                   className=" btn btn-sm btn-outline-danger delete-btn project-del-btn"
                   id="project-delete-btn"
+                  onClick={() => props.deleteProject(projectId)}
                 >
                   delete Project
                 </button>
@@ -41,7 +42,13 @@ export default function ProjectDisplay(props) {
           <div className="table-responsive">
             <div className="list-group">
               {data.map((val) => (
-                <TodoDisplay key={val.id} projectId={projectId} data={val} />
+                <TodoDisplay
+                  key={val.id}
+                  projectId={projectId}
+                  data={val}
+                  completeTodo={props.completeTodo}
+                  deleteTodo={props.deleteTodo}
+                />
               ))}
             </div>
           </div>
