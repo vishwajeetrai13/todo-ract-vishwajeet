@@ -154,7 +154,7 @@ export class EditTodoForm extends Component {
   render() {
     console.log("this", this.state);
     const { todoName, todoDate, todoPriority } = this.state;
-    const { projectId, todoId, title, date, priority } = this.props.data;
+    const { projectId, todoId } = this.props.data;
     return (
       <div id="id02" class="modal">
         <form class="modal-content animate" id="form-add-todo">
