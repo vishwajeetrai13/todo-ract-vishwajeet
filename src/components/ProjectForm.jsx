@@ -73,10 +73,10 @@ export class TodoForm extends Component {
   render() {
     const { todoName, todoDate, todoPriority } = this.state;
     return (
-      <div id="id02" class="modal">
-        <form class="modal-content animate" id="form-add-todo">
-          <div class="container">
-            <label for="uname">
+      <div id="id02" className="modal">
+        <form className="modal-content animate" id="form-add-todo">
+          <div className="container">
+            <label htmlFor="uname">
               <b>Add New Task</b>
             </label>
             <input
@@ -88,9 +88,9 @@ export class TodoForm extends Component {
               onChange={this.updateTodoName}
               required
             />
-            <div class="d-flex justify-content-between">
+            <div className="d-flex justify-content-between">
               <input
-                class="form-control mr-2"
+                className="form-control mr-2"
                 type="date"
                 placeholder="2011-08-19"
                 id="todo-due-date"
@@ -98,7 +98,7 @@ export class TodoForm extends Component {
                 onChange={this.updateTodoDate}
               />
               <select
-                class="form-control ml-2"
+                className="form-control ml-2"
                 id="todo-priority-selector"
                 value={this.todoPriority}
                 onChange={this.updateTodoPriority}
@@ -110,7 +110,7 @@ export class TodoForm extends Component {
             </div>
             <button
               type="button"
-              class="btn btn-secondary"
+              className="btn btn-secondary"
               id="todo-submit-btn"
               onClick={() =>
                 this.props.addNewTodo(todoName, todoDate, todoPriority)
@@ -120,7 +120,7 @@ export class TodoForm extends Component {
             </button>
             <button
               type="button"
-              class="btn btn-danger"
+              className="btn btn-danger"
               onClick={this.props.closeTodoForm}
             >
               close
@@ -156,10 +156,10 @@ export class EditTodoForm extends Component {
     const { todoName, todoDate, todoPriority } = this.state;
     const { projectId, todoId } = this.props.data;
     return (
-      <div id="id02" class="modal">
-        <form class="modal-content animate" id="form-add-todo">
-          <div class="container">
-            <label for="uname">
+      <div id="id02" className="modal">
+        <form className="modal-content animate" id="form-add-todo">
+          <div className="container">
+            <label htmlFor="uname">
               <b>Add New Task</b>
             </label>
             <input
@@ -171,9 +171,9 @@ export class EditTodoForm extends Component {
               onChange={this.updateTodoName}
               required
             />
-            <div class="d-flex justify-content-between">
+            <div className="d-flex justify-content-between">
               <input
-                class="form-control mr-2"
+                className="form-control mr-2"
                 type="date"
                 placeholder="2011-08-19"
                 id="todo-due-date"
@@ -181,7 +181,7 @@ export class EditTodoForm extends Component {
                 onChange={this.updateTodoDate}
               />
               <select
-                class="form-control ml-2"
+                className="form-control ml-2"
                 id="todo-priority-selector"
                 value={todoPriority}
                 onChange={this.updateTodoPriority}
@@ -193,7 +193,7 @@ export class EditTodoForm extends Component {
             </div>
             <button
               type="button"
-              class="btn btn-secondary"
+              className="btn btn-secondary"
               id="todo-submit-btn"
               onClick={() =>
                 this.props.editTodo(
@@ -209,7 +209,7 @@ export class EditTodoForm extends Component {
             </button>
             <button
               type="button"
-              class="btn btn-danger"
+              className="btn btn-danger"
               onClick={this.props.closeEditTodoForm}
             >
               cancel

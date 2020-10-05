@@ -12,7 +12,7 @@ export default function SideBar(props) {
             <span>Projects</span>
             <a
               className="d-flex align-items-center text-muted button"
-              href
+              href="#"
               onClick={props.displayProjectForm}
             >
               <svg
@@ -22,9 +22,9 @@ export default function SideBar(props) {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="feather feather-plus-circle"
               >
                 <circle cx="12" cy="12" r="10"></circle>
@@ -40,7 +40,7 @@ export default function SideBar(props) {
                 <li className="nav-item" key={val.projectId}>
                   <a
                     className="nav-link"
-                    href
+                    href="#"
                     id={val.projectId}
                     onClick={() => props.displaySelectedProject(val.projectId)}
                   >
